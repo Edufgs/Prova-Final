@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <locale.h>
 #include <string.h>
-#include <unistd.h>//BIBLIOTECA DO SLEEP(LOADING) OU PO DE BAIXO
+#include <unistd.h>//BIBLIOTECA DO SLEEP(LOADING) OU O DE BAIXO
 #include <windows.h>//BIBLIOTECA DO SLEEP(LOADING) PARA WINDOWS
 
 FILE *antigo, *novo, *ajuda;
