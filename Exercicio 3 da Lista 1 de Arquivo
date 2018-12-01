@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <conio.h>
 #include <locale.h>
+#include <unistd.h>//BIBLIOTECA SLEEP(LOADING)
+#include <windows.h>//BIBLIOTECA SLEEP(LOADING)
 
 int i;
 FILE *antigo, *novo;
@@ -25,16 +27,21 @@ int main()
 
 inicio()
 {
-    printf("---------------------------------------");
-    printf("\nAno Atual: 2011");
-    printf("\nOque vc deseja fazer?");
-    printf("\n\n01-Atualizar preço dos carros?");
-    printf("\n\n02-Deseja imprimir catalogo?");
-    printf("\n\n03-Deseja fechar o programa?");
-    printf("\n---------------------------------------");
+    printf("\n|||||||||||||||||||||||||MENU|||||||||||||||||||||||||||||");
+    printf("\n||||                 Ano Atual: 2011                  ||||");
+    printf("\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+    printf("\n                                                          ");
+    printf("\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+    printf("\n||||             Oque vc deseja fazer?                ||||");
+    printf("\n||||                                                  ||||");
+    printf("\n||||      01-Atualizar preço dos carros?              ||||");
+    printf("\n||||      02-Deseja imprimir catalogo?                ||||");
+    printf("\n||||      03-Deseja fechar o programa?                ||||");
+    printf("\n||||                                                  ||||");
+    printf("\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
     printf("\nDigite a opção:");
     scanf("%d",&i);
-
+    system("cls");
     switch(i)
     {
         case 1:
@@ -55,16 +62,55 @@ inicio()
 
 AtualizaPreco()//atualização no preço dos carros
 {
+    //LOADING..
+    printf("A");
+    Sleep(100);
+    printf("T");
+    Sleep(100);
+    printf("U");
+    Sleep(100);
+    printf("A");
+    Sleep(100);
+    printf("L");
+    Sleep(100);
+    printf("I");
+    Sleep(100);
+    printf("Z");
+    Sleep(100);
+    printf("A");
+    Sleep(100);
+    printf("N");
+    Sleep(100);
+    printf("D");
+    Sleep(100);
+    printf("O");
+    Sleep(100);
+    printf(".");
+    Sleep(500);
+    printf(".");
+    Sleep(500);
+    printf(".");
+    Sleep(500);
+
+    system("cls");
+    fclose(antigo);//FECHANDO ARQUIVO PARA ABRIR NOVAMENTE
+
+    antigo=fopen("Concessionaria.CAD","r");
+
+    //verificando se o arquivo foi aberto
+    if(!antigo)
+    {
+        printf("O Arquivo nao foi aberto!!!");
+        return 1;
+    }
+
     float preco, a;
     int codigo, ano, portas, r;
     char vet [20]={0};
 
-    fclose(antigo);
-    antigo=fopen("Concessionaria.CAD","r");
-
     while(!feof(antigo))
     {
-        fscanf(antigo, "%d %s %f %d %d", &codigo,&vet,&preco,&ano,&portas);
+        fscanf(antigo, "%d %s %f %d %d\n", &codigo,&vet,&preco,&ano,&portas);
         printf("\n%d %s %.2f %d %d",codigo,vet,preco,ano,portas);
         /*Vai olhar o ano do carro, modificar e passar para o arquivo novo*/
         r=2011 - ano;
@@ -96,6 +142,7 @@ AtualizaPreco()//atualização no preço dos carros
                 fprintf(novo,"\n%d %s %.2f %d %d",codigo,vet,preco,ano,portas);
             }
         else
+             if(r>=5)
             {
                 printf("\nModelo do Carro:%s\tPreço Antigo:%.2f\t",vet,preco);
                 a = (preco * 2)/100;
@@ -105,19 +152,20 @@ AtualizaPreco()//atualização no preço dos carros
             }
             printf("\n\n");
     }
+    Sleep(1000);
     denovo();
 }
 
 imprimir()//função para imprimir o arquivo antigo
 {
-    fclose(antigo);
-    //abrir novamente porque dava erro se fizesse mais de uma vez
+    fclose(antigo);//FECHANDO ARQUIVO PARA ABRIR NOVAMENTE
+
     antigo=fopen("Concessionaria.CAD","r");
 
     //verificando se o arquivo foi aberto
     if(!antigo)
     {
-        printf("O Arquivo nao foi aberto");
+        printf("O Arquivo nao foi aberto!!!");
         return 1;
     }
 
@@ -129,6 +177,7 @@ imprimir()//função para imprimir o arquivo antigo
         printf("%s",vet1);
     }
     printf("\n\n");
+    Sleep(1000);
     inicio();
 }
 
@@ -149,17 +198,20 @@ imprimir2()//funçao para imprimir novo arquivo
         fgets(vet1, 50, novo);
         printf("%s",vet1);
     }
+    Sleep(1000);
     denovo();
 }
 
 imprimir3()//função para imprimir o arquivo antigo
 {
-    fclose(antigo);
+    fclose(antigo);//FECHANDO ARQUIVO PARA ABRIR NOVAMENTE
+
     antigo=fopen("Concessionaria.CAD","r");
 
+    //verificando se o arquivo foi aberto
     if(!antigo)
     {
-        printf("O Arquivo nao foi aberto");
+        printf("O Arquivo nao foi aberto!!!");
         return 1;
     }
 
@@ -170,21 +222,28 @@ imprimir3()//função para imprimir o arquivo antigo
         fgets(vet1, 50, antigo);
         printf("%s",vet1);
     }
+    Sleep(1000);
     denovo();
 }
 
 denovo()
 {
-    printf("\n\n---------------------------------------");
-    printf("\nAno Atual: 2011");
-    printf("\nOque vc deseja fazer?");
-    printf("\n01-Imprimir o novo catalogo atualizado?");
-    printf("\n\n02-Deseja imprimir catalogo antigo?");
-    printf("\n\n03-Deseja fechar o programa?");
-    printf("\n---------------------------------------");
+    printf("\n|||||||||||||||||||||||||MENU|||||||||||||||||||||||||||||");
+    printf("\n||||                 Ano Atual: 2011                  ||||");
+    printf("\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+    printf("\n");
+    printf("\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+    printf("\n||||             Oque vc deseja fazer?                ||||");
+    printf("\n||||                                                  ||||");
+    printf("\n||||      01-Imprimir o novo catalogo atualizado?     ||||");
+    printf("\n||||      02-Deseja imprimir catalogo antigo?         ||||");
+    printf("\n||||      03-Deseja fechar o programa?                ||||");
+    printf("\n||||                                                  ||||");
+    printf("\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
     printf("\nDigite a opção:");
     scanf("%d",&i);
 
+    system("cls");
     switch(i)
     {
         case 1:
@@ -205,8 +264,20 @@ denovo()
 
 fechar()
 {
-    printf("\nFechando Programa............");
+    //LOADING
+    printf("Fechando Programa");
+    Sleep(500);
+    printf(".");
+    Sleep(500);
+    printf(".");
+    Sleep(500);
+    printf(".");
+    Sleep(500);
+
     fclose(novo);
     fclose(antigo);
+    printf("\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
+    printf("\n||||              Programa Fechado!!!                 ||||");
+    printf("\n||||||||||||||||||||||||||||||||||||||||||||||||||||||||||");
     return;
 }
